@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="gps_dialog_title">GPS Disabled</string>
+    <string name="gps_dialog_message">Gps is disabled, in order to use the application properly you need to enable GPS of your device</string>
+    <string name="gps_dialog_positive">Enable GPS</string>
+    <string name="gps_dialog_negative">No, Just Exit</string>
+</resources>
