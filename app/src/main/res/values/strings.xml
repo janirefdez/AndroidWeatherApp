@@ -4,4 +4,16 @@
     <string name="gps_dialog_message">Gps is disabled, in order to use the application properly you need to enable GPS of your device</string>
     <string name="gps_dialog_positive">Enable GPS</string>
     <string name="gps_dialog_negative">No, Just Exit</string>
+    <string name="weather_title">Weather now</string>
+    <string name="min_temp">Min temp</string>
+    <string name="max_temp">Max temp</string>
+    <string name="wind_speed">Wind speed</string>
+    <string name="humidity">Humidity</string>
+    <string name="clouds">Clouds</string>
+    <!--Content description-->
+    <string name="city_icon">City icon</string>
+    <string name="temp_icon">Thermometer icon</string>
+    <string name="wind_icon">Wind icon</string>
+    <string name="humidity_icon">Humidity icon</string>
+    <string name="sun_icon">Sun icon</string>
 </resources>

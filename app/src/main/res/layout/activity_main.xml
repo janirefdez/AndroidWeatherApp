@@ -4,15 +4,315 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blue"
     tools:context=".ui.view.MainActivity">
 
-    <TextView
+    <ProgressBar
+        android:id="@+id/loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:indeterminateTint="@color/dark_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/weatherView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10sp"
+            android:paddingTop="10sp"
+            android:textColor="@color/dark_blue"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Ledeberg" />
+
+        <TextView
+            android:id="@+id/currentDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10sp"
+            android:textColor="@color/dark_blue"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/location"
+            tools:text="Today, 21 Mar, 16:22" />
+
+        <ImageView
+            android:id="@+id/sunIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40sp"
+            android:contentDescription="@string/sun_icon"
+            android:padding="15sp"
+            android:src="@drawable/sun_max"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/currentDate" />
+
+        <TextView
+            android:id="@+id/cloudsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10sp"
+            android:textColor="@color/dark_blue"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sunIcon"
+            android:text="@string/clouds" />
+
+        <TextView
+            android:id="@+id/minTempMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20sp"
+            android:padding="10sp"
+            android:textColor="@color/dark_blue"
+            android:textSize="60sp"
+            android:textStyle="bold"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/currentDate"
+            tools:text="290°" />
+
+
+        <ImageView
+            android:id="@+id/cityIcon"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:contentDescription="@string/city_icon"
+            android:padding="15sp"
+            android:layout_marginBottom="200sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:translationY="20sp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="10dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="40sp">
+
+                <TextView
+                    android:id="@+id/weatherTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10sp"
+                    android:paddingTop="10sp"
+                    android:paddingBottom="20sp"
+                    android:text="@string/weather_title"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- min temp  -->
+                <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/minTempIcon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10sp"
+                    android:backgroundTint="@color/gray"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/weatherTitle"
+                    card_view:cardCornerRadius="50sp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/temp_icon"
+                        android:padding="15sp"
+                        android:src="@drawable/thermometer" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/minTempTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10sp"
+                    android:text="@string/min_temp"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="13sp"
+                    android:textStyle="normal"
+                    app:layout_constraintLeft_toRightOf="@id/minTempIcon"
+                    app:layout_constraintTop_toBottomOf="@id/weatherTitle" />
+
+                <TextView
+                    android:id="@+id/minTempValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10sp"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toRightOf="@id/minTempIcon"
+                    app:layout_constraintTop_toBottomOf="@id/minTempTitle"
+                    tools:text="290°" />
+
+
+                <!-- wind speed-->
+                <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/windSpeedIcon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10sp"
+                    android:layout_marginTop="20sp"
+                    android:backgroundTint="@color/gray"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/minTempIcon"
+                    card_view:cardCornerRadius="50sp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/wind_icon"
+                        android:padding="15sp"
+                        android:src="@drawable/wind" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/windSpeedTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10sp"
+                    android:layout_marginTop="25sp"
+                    android:text="@string/wind_speed"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="13sp"
+                    android:textStyle="normal"
+                    app:layout_constraintLeft_toRightOf="@id/windSpeedIcon"
+                    app:layout_constraintTop_toBottomOf="@id/minTempIcon" />
+
+                <TextView
+                    android:id="@+id/windSpeedValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10sp"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toRightOf="@id/windSpeedIcon"
+                    app:layout_constraintTop_toBottomOf="@id/windSpeedTitle"
+                    tools:text="3 m/s" />
+
+
+                <!-- max temp  -->
+                <TextView
+                    android:id="@+id/maxTempTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="30sp"
+                    android:text="@string/min_temp"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="13sp"
+                    android:textStyle="normal"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/weatherTitle" />
+
+                <TextView
+                    android:id="@+id/maxTempValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20sp"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toRightOf="@id/maxTempIcon"
+                    app:layout_constraintTop_toBottomOf="@id/maxTempTitle"
+                    tools:text="290°" />
+
+
+                <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/maxTempIcon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="20sp"
+                    android:backgroundTint="@color/gray"
+                    app:layout_constraintRight_toLeftOf="@id/maxTempTitle"
+                    app:layout_constraintTop_toBottomOf="@id/weatherTitle"
+                    card_view:cardCornerRadius="50sp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/temp_icon"
+                        android:padding="15sp"
+                        android:src="@drawable/thermometer" />
+                </androidx.cardview.widget.CardView>
+
+
+                <!-- humidity  -->
+                <TextView
+                    android:id="@+id/humidityTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25sp"
+                    android:layout_marginEnd="30sp"
+                    android:text="@string/humidity"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="13sp"
+                    android:textStyle="normal"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/maxTempIcon" />
+
+                <TextView
+                    android:id="@+id/humidityValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20sp"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toRightOf="@id/maxTempIcon"
+                    app:layout_constraintTop_toBottomOf="@id/humidityTitle"
+                    tools:text="49%" />
+
+
+                <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/humidityIcon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20sp"
+                    android:layout_marginEnd="20sp"
+                    android:backgroundTint="@color/gray"
+                    app:layout_constraintRight_toLeftOf="@id/maxTempTitle"
+                    app:layout_constraintTop_toBottomOf="@id/maxTempIcon"
+                    card_view:cardCornerRadius="50sp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/humidity_icon"
+                        android:padding="15sp"
+                        android:src="@drawable/humidity" />
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+
